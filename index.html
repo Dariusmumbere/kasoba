@@ -1,1083 +1,877 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Kasoba Godwin — Filmmaker</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kasoba Godwin — Filmmaker &amp; Storyteller of the Rwenzori</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Work+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  :root {
-    --black: #09090B;
-    --deep: #111118;
-    --slate: #1A1A2E;
-    --gold: #C9A84C;
-    --gold-light: #E5C97A;
-    --gold-dim: rgba(201,168,76,0.18);
-    --cream: #F0EBE0;
-    --white: #FAFAF8;
-    --grey: #8A8A9A;
-    --border: rgba(201,168,76,0.22);
-    --font-display: 'Playfair Display', serif;
-    --font-body: 'Inter', sans-serif;
-    --font-elegant: 'Cormorant Garamond', serif;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--black);
-    color: var(--white);
-    font-family: var(--font-body);
-    overflow-x: hidden;
-    cursor: none;
+  /* ============ TOKENS ============ */
+  :root{
+    --ink:#11242a;
+    --ink-2:#0a1719;
+    --teal:#1c3c40;
+    --accent:#e07a3e;
+    --accent-bright:#f0966a;
+    --gold:#e3b563;
+    --rose:#c98a93;
+    --cream:#faf5ec;
+    --paper:#fffdf8;
+    --line:rgba(17,36,42,0.10);
+    --line-dark:rgba(250,245,236,0.14);
+    --text-ink:#1a2b30;
+    --text-soft:#5b6b6e;
+    --text-cream:#faf5ec;
+    --text-cream-soft:#c4cfcd;
+    --radius:14px;
+    --radius-sm:8px;
+    --shadow:0 20px 46px -18px rgba(10,23,25,0.28);
+    --ease:cubic-bezier(.16,.84,.32,1);
   }
 
-  /* Custom cursor */
-  .cursor {
-    position: fixed; top: 0; left: 0;
-    width: 10px; height: 10px;
-    background: var(--gold);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s ease;
-    mix-blend-mode: difference;
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--text-ink);
+    font-family:'Work Sans',sans-serif;
+    font-weight:400;
+    line-height:1.65;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
   }
-  .cursor-ring {
-    position: fixed; top: 0; left: 0;
-    width: 36px; height: 36px;
-    border: 1.5px solid var(--gold);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-    transition: transform 0.18s ease, width 0.2s, height 0.2s, opacity 0.2s;
-    opacity: 0.6;
-  }
-  .cursor-ring.expand { width: 56px; height: 56px; opacity: 0.3; }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  section{position:relative;}
 
-  /* ─── NAV ─── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 24px 60px;
-    transition: background 0.4s, padding 0.3s, backdrop-filter 0.4s;
-  }
-  nav.scrolled {
-    background: rgba(9,9,11,0.88);
-    backdrop-filter: blur(18px);
-    padding: 16px 60px;
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    letter-spacing: 0.12em;
-    color: var(--gold);
-    text-transform: uppercase;
-    text-decoration: none;
-  }
-  .nav-links { display: flex; gap: 36px; list-style: none; }
-  .nav-links a {
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--grey);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--gold); }
+  .serif{font-family:'Fraunces',serif;}
+  .mono{font-family:'Space Mono',monospace;}
 
-  /* ─── HERO ─── */
-  #hero {
-    position: relative;
-    height: 100vh;
-    min-height: 700px;
-    display: flex; align-items: flex-end;
-    overflow: hidden;
+  .eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:.7rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:inline-flex;
+    align-items:center;
+    gap:.6em;
+    margin-bottom:1.1rem;
   }
-  .hero-bg {
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, #09090B 0%, #1A1A2E 60%, #09090B 100%);
-    z-index: 0;
+  .eyebrow::before{
+    content:'';
+    width:20px;height:1px;
+    background:var(--accent);
+    display:inline-block;
   }
-  /* film grain overlay */
-  .hero-bg::after {
-    content: '';
-    position: absolute; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    background-size: 200px;
-    opacity: 0.55;
-    pointer-events: none;
-  }
-  .hero-photo-wrap {
-    position: absolute;
-    right: 0; bottom: 0;
-    width: 52%;
-    height: 100%;
-    overflow: hidden;
-    z-index: 1;
-  }
-  .hero-photo-wrap::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(to right, var(--black) 0%, transparent 40%);
-    z-index: 2;
-  }
-  .hero-photo-wrap::after {
-    content: '';
-    position: absolute; bottom: 0; left: 0; right: 0;
-    height: 200px;
-    background: linear-gradient(to top, var(--black) 0%, transparent 100%);
-    z-index: 2;
-  }
-  .hero-photo {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    object-position: top center;
-    opacity: 0;
-    transition: opacity 1.2s ease 0.5s;
-    filter: grayscale(18%) contrast(1.06);
-  }
-  .hero-photo.loaded { opacity: 1; }
+  .on-dark .eyebrow{color:var(--gold);}
+  .on-dark .eyebrow::before{background:var(--gold);}
 
-  .hero-content {
-    position: relative; z-index: 3;
-    padding: 0 60px 80px;
-    max-width: 680px;
-  }
-  .hero-eyebrow {
-    font-size: 0.68rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 20px;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeUp 0.8s ease 0.3s forwards;
-  }
-  .hero-name {
-    font-family: var(--font-display);
-    font-size: clamp(3.8rem, 8vw, 7.5rem);
-    font-weight: 900;
-    line-height: 0.92;
-    letter-spacing: -0.02em;
-    margin-bottom: 28px;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeUp 0.9s ease 0.5s forwards;
-  }
-  .hero-name .first { color: var(--white); display: block; }
-  .hero-name .last { color: var(--gold); display: block; }
-  .hero-roles {
-    font-family: var(--font-elegant);
-    font-style: italic;
-    font-size: 1.15rem;
-    color: var(--cream);
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeUp 0.8s ease 0.75s forwards;
-    margin-bottom: 40px;
-    line-height: 1.7;
-  }
-  .hero-cta {
-    display: inline-flex; align-items: center; gap: 14px;
-    padding: 14px 32px;
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: background 0.3s, color 0.3s;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 1s forwards;
-  }
-  .hero-cta:hover { background: var(--gold); color: var(--black); }
-  .hero-cta svg { transition: transform 0.3s; }
-  .hero-cta:hover svg { transform: translateX(4px); }
-
-  .hero-stats {
-    position: absolute;
-    right: 60px; bottom: 80px;
-    z-index: 4;
-    display: flex; gap: 48px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 1.1s forwards;
-  }
-  .hero-stat { text-align: center; }
-  .hero-stat .num {
-    font-family: var(--font-display);
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: var(--gold);
-    display: block;
-    line-height: 1;
-  }
-  .hero-stat .lbl {
-    font-size: 0.62rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--grey);
-    margin-top: 4px;
-    display: block;
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 6vw;
   }
 
-  /* film-strip bottom border */
-  .filmstrip {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    height: 28px; z-index: 5;
-    display: flex;
-    background: var(--gold);
-    overflow: hidden;
-  }
-  .filmstrip-hole {
-    flex: 0 0 28px; height: 14px;
-    background: var(--black);
-    border-radius: 2px;
-    margin: auto 6px;
-    flex-shrink: 0;
+  h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-.01em;}
+
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease), transform .8s var(--ease);}
+  .reveal.is-visible{opacity:1;transform:translateY(0);}
+
+  /* Image frame with graceful color fallback if file is missing */
+  .photo{
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    border-radius:var(--radius);
   }
 
-  @keyframes fadeUp {
-    to { opacity: 1; transform: translateY(0); }
+  @media (prefers-reduced-motion: reduce){
+    *{transition-duration:.01ms !important;}
   }
 
-  /* ─── SCROLL REVEAL ─── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+  /* ============ NAV ============ */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:1.5rem 6vw;
+    transition:background .45s var(--ease), padding .45s var(--ease);
   }
-  .reveal.visible { opacity: 1; transform: none; }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
-  .reveal-delay-4 { transition-delay: 0.4s; }
+  .nav.scrolled{
+    background:rgba(10,23,25,0.88);
+    backdrop-filter:blur(14px);
+    padding:1rem 6vw;
+    box-shadow:0 1px 0 var(--line-dark);
+  }
+  .nav-mark{
+    display:flex;align-items:center;gap:.7rem;
+    font-family:'Fraunces',serif;font-weight:600;font-size:1.02rem;
+    color:var(--text-cream);
+  }
+  .nav-mark .ring{
+    width:32px;height:32px;border-radius:50%;
+    border:1px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Space Mono',monospace;font-size:.65rem;color:var(--gold);
+    flex-shrink:0;
+  }
+  .nav-links{display:flex;align-items:center;gap:2rem;}
+  .nav-links a{
+    font-family:'Space Mono',monospace;
+    font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;
+    color:var(--text-cream-soft);
+    position:relative;padding-bottom:4px;
+    transition:color .3s;
+  }
+  .nav-links a:hover{color:var(--text-cream);}
+  .nav-links a::after{
+    content:'';position:absolute;left:0;bottom:0;height:1px;width:0;
+    background:var(--gold);transition:width .35s var(--ease);
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{border:1px solid var(--gold);padding:.5rem 1.1rem;border-radius:var(--radius-sm);}
+  .nav-toggle{display:none;background:none;border:none;color:var(--text-cream);cursor:pointer;}
 
-  /* ─── SECTION STYLES ─── */
-  section { padding: 120px 60px; }
-  .section-eyebrow {
-    font-size: 0.65rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 16px;
+  /* ============ HERO ============ */
+  .hero{
+    min-height:100vh;
+    position:relative;
+    overflow:hidden;
+    display:flex;flex-direction:column;justify-content:center;
+    padding-top:8rem;padding-bottom:5rem;
+    color:var(--text-cream);
   }
-  .section-title {
-    font-family: var(--font-display);
-    font-size: clamp(2.2rem, 4vw, 3.5rem);
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 60px;
+  .hero-slides{position:absolute;inset:0;z-index:0;}
+  .hero-slide{
+    position:absolute;inset:0;
+    background-size:cover;background-position:center;
+    background-color:var(--ink);
+    opacity:0;
+    animation:heroFade 30s infinite;
   }
-  .gold-line {
-    width: 48px; height: 2px;
-    background: var(--gold);
-    margin-bottom: 40px;
+  .hero-slide:nth-child(1){animation-delay:0s;}
+  .hero-slide:nth-child(2){animation-delay:3s;}
+  .hero-slide:nth-child(3){animation-delay:6s;}
+  .hero-slide:nth-child(4){animation-delay:9s;}
+  .hero-slide:nth-child(5){animation-delay:12s;}
+  .hero-slide:nth-child(6){animation-delay:15s;}
+  .hero-slide:nth-child(7){animation-delay:18s;}
+  .hero-slide:nth-child(8){animation-delay:21s;}
+  .hero-slide:nth-child(9){animation-delay:24s;}
+  .hero-slide:nth-child(10){animation-delay:27s;}
+  @keyframes heroFade{
+    0%{opacity:0;transform:scale(1.02);}
+    4%{opacity:1;}
+    9%{opacity:1;transform:scale(1.08);}
+    13%{opacity:0;}
+    100%{opacity:0;}
   }
+  @media (prefers-reduced-motion: reduce){
+    .hero-slide{animation:none;opacity:0;}
+    .hero-slide:first-child{opacity:1;transform:none;}
+  }
+  .hero-overlay{
+    position:absolute;inset:0;z-index:1;
+    background:linear-gradient(180deg, rgba(10,23,25,.62) 0%, rgba(10,23,25,.74) 50%, rgba(10,23,25,.93) 100%);
+  }
+  .hero-inner{position:relative;z-index:2;}
 
-  /* ─── ABOUT ─── */
-  #about { background: var(--deep); }
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
+  .hero-eyebrow{
+    font-family:'Space Mono',monospace;font-size:.76rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--gold);
+    display:flex;align-items:center;gap:.8em;margin-bottom:1.8rem;
   }
-  .about-quote {
-    font-family: var(--font-elegant);
-    font-style: italic;
-    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
-    line-height: 1.55;
-    color: var(--cream);
-    border-left: 3px solid var(--gold);
-    padding-left: 32px;
-    margin-bottom: 40px;
-  }
-  .about-text {
-    font-size: 0.96rem;
-    line-height: 1.85;
-    color: var(--grey);
-  }
-  .about-text p + p { margin-top: 18px; }
-  .about-img-stack {
-    position: relative;
-    height: 560px;
-  }
-  .about-img {
-    position: absolute;
-    border-radius: 2px;
-    object-fit: cover;
-    filter: grayscale(10%) contrast(1.05);
-  }
-  .about-img.main {
-    width: 76%; height: 80%;
-    top: 0; right: 0;
-    box-shadow: -12px 12px 60px rgba(0,0,0,0.7);
-    border: 1px solid var(--border);
-  }
-  .about-img.accent {
-    width: 50%; height: 50%;
-    bottom: 0; left: 0;
-    box-shadow: 12px -6px 40px rgba(0,0,0,0.5);
-    border: 1px solid var(--border);
-  }
-  .about-gold-block {
-    position: absolute;
-    right: -20px; bottom: 60px;
-    width: 100px; height: 100px;
-    background: var(--gold);
-    opacity: 0.12;
-    z-index: 0;
-  }
+  .hero-eyebrow .dash{width:30px;height:1px;background:var(--gold);}
 
-  /* ─── SKILLS ─── */
-  #skills { background: var(--black); }
-  .skills-inner { max-width: 1200px; margin: 0 auto; }
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 2px;
+  .hero h1{
+    font-size:clamp(3.2rem,8.4vw,6.8rem);
+    line-height:.98;
+    font-weight:600;
+    color:var(--text-cream);
   }
-  .skill-card {
-    background: var(--deep);
-    padding: 32px 28px;
-    border: 1px solid var(--border);
-    transition: background 0.3s, border-color 0.3s;
-    position: relative;
-    overflow: hidden;
+  .hero h1 em{font-style:italic;font-weight:400;color:var(--gold);}
+  .hero-sub{
+    margin-top:1.6rem;max-width:600px;
+    font-size:1.14rem;font-style:italic;font-family:'Fraunces',serif;
+    color:var(--text-cream-soft);font-weight:400;
   }
-  .skill-card::before {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 0; height: 2px;
-    background: var(--gold);
-    transition: width 0.4s ease;
+  .hero-roles{margin-top:2.2rem;display:flex;flex-wrap:wrap;gap:.55rem;}
+  .role-chip{
+    font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.05em;
+    text-transform:uppercase;color:var(--text-cream-soft);
+    border:1px solid var(--line-dark);padding:.5rem 1rem;border-radius:100px;
   }
-  .skill-card:hover::before { width: 100%; }
-  .skill-card:hover { background: rgba(201,168,76,0.05); border-color: var(--gold); }
-  .skill-icon { font-size: 1.5rem; margin-bottom: 14px; }
-  .skill-name {
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    color: var(--white);
-    margin-bottom: 6px;
+  .hero-ctas{margin-top:2.6rem;display:flex;gap:1rem;flex-wrap:wrap;}
+  .btn{
+    font-family:'Space Mono',monospace;font-size:.76rem;letter-spacing:.05em;text-transform:uppercase;
+    padding:.9rem 1.8rem;border-radius:var(--radius-sm);
+    display:inline-flex;align-items:center;gap:.6rem;
+    transition:transform .35s var(--ease), background .35s, color .35s, border-color .35s;
+    cursor:pointer;border:1px solid transparent;
   }
-  .skill-sub { font-size: 0.74rem; color: var(--grey); line-height: 1.5; }
+  .btn-solid{background:var(--accent);color:var(--ink-2);}
+  .btn-solid:hover{background:var(--accent-bright);transform:translateY(-2px);}
+  .btn-outline{border-color:var(--line-dark);color:var(--text-cream);}
+  .btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px);}
 
-  /* ─── FILMOGRAPHY ─── */
-  #filmography { background: var(--slate); padding-bottom: 0; }
-  .film-scroll-wrap {
-    overflow-x: auto;
-    padding: 0 60px 60px;
-    scrollbar-width: thin;
-    scrollbar-color: var(--gold) transparent;
-    cursor: grab;
+  .hero-stats{
+    margin-top:4rem;display:grid;grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--line-dark);padding-top:1.6rem;gap:1.2rem;
   }
-  .film-scroll-wrap:active { cursor: grabbing; }
-  .film-strip-row {
-    display: flex;
-    gap: 3px;
-    width: max-content;
+  .stat-num{font-family:'Fraunces',serif;font-size:2rem;color:var(--gold);font-weight:600;}
+  .stat-label{font-family:'Space Mono',monospace;font-size:.64rem;letter-spacing:.05em;text-transform:uppercase;color:var(--text-cream-soft);margin-top:.35rem;}
+
+  /* ============ MANIFESTO ============ */
+  .manifesto{background:var(--ink-2);color:var(--text-cream);padding:5.5rem 0;text-align:center;}
+  .manifesto blockquote{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:400;
+    font-size:clamp(1.3rem,2.8vw,2.1rem);max-width:840px;margin:0 auto;line-height:1.5;
   }
-  .film-card {
-    flex: 0 0 260px;
-    background: var(--deep);
-    border: 1px solid var(--border);
-    padding: 32px 24px;
-    position: relative;
-    transition: border-color 0.3s, transform 0.3s;
-  }
-  .film-card:hover { border-color: var(--gold); transform: translateY(-6px); }
-  .film-year {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 12px;
-  }
-  .film-title {
-    font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 14px;
-    line-height: 1.2;
-    color: var(--white);
-  }
-  .film-role {
-    font-size: 0.72rem;
-    color: var(--grey);
-    font-style: italic;
-    line-height: 1.5;
-  }
-  .film-card-num {
-    position: absolute;
-    top: 20px; right: 20px;
-    font-family: var(--font-display);
-    font-size: 2.8rem;
-    font-weight: 900;
-    color: rgba(201,168,76,0.08);
-    line-height: 1;
-    user-select: none;
-  }
-  /* sprocket holes top and bottom */
-  .sprockets {
-    display: flex; gap: 20px;
-    padding: 12px 60px;
-    background: var(--gold);
-  }
-  .sprocket {
-    width: 24px; height: 14px;
-    background: var(--black);
-    border-radius: 2px;
-    flex-shrink: 0;
+  .manifesto cite{
+    display:block;margin-top:1.8rem;font-family:'Space Mono',monospace;font-size:.7rem;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-style:normal;
   }
 
-  /* ─── GALLERY ─── */
-  #gallery { background: var(--black); }
-  .gallery-inner { max-width: 1200px; margin: 0 auto; }
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 280px 280px;
-    gap: 4px;
+  /* ============ SECTION GENERIC ============ */
+  .section{padding:6.5rem 0;}
+  .section-light{background:var(--paper);}
+  .section-mist{background:var(--cream);}
+  .head-row{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    gap:2rem;margin-bottom:3.2rem;flex-wrap:wrap;
   }
-  .gallery-item {
-    overflow: hidden;
-    position: relative;
-    background: var(--deep);
-    border: 1px solid var(--border);
+  .head-row h2{font-size:clamp(1.9rem,3.6vw,2.7rem);max-width:600px;}
+  .head-note{max-width:320px;color:var(--text-soft);font-size:.95rem;}
+
+  /* ============ ABOUT ============ */
+  .about-grid{display:grid;grid-template-columns:1.25fr .85fr;gap:4.5rem;align-items:start;}
+  .about-grid p{color:var(--text-soft);font-size:1.03rem;margin-bottom:1.2rem;max-width:540px;}
+
+  .field-card{
+    background:var(--ink);color:var(--text-cream);border-radius:var(--radius);
+    padding:2.2rem 2rem;position:relative;overflow:hidden;
   }
-  .gallery-item:first-child { grid-column: span 2; }
-  .gallery-item:last-child { grid-column: span 2; }
-  .gallery-item img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform 0.7s ease, filter 0.4s;
-    filter: grayscale(15%) contrast(1.05);
+  .field-card h4{
+    font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:1.3rem;font-weight:700;
   }
-  .gallery-item:hover img { transform: scale(1.06); filter: grayscale(0%) contrast(1.08); }
-  .gallery-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(9,9,11,0.7) 0%, transparent 60%);
-    opacity: 0;
-    transition: opacity 0.4s;
-    display: flex; align-items: flex-end;
-    padding: 20px;
+  .field-row{
+    display:flex;justify-content:space-between;gap:1rem;padding:.78rem 0;
+    border-bottom:1px solid var(--line-dark);font-size:.9rem;
   }
-  .gallery-item:hover .gallery-overlay { opacity: 1; }
-  .gallery-label {
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold);
+  .field-row:last-child{border-bottom:none;}
+  .field-row span:first-child{color:var(--text-cream-soft);font-family:'Space Mono',monospace;font-size:.7rem;}
+  .field-row span:last-child{text-align:right;}
+
+  .portrait-frame{
+    margin-top:1.3rem;width:100%;aspect-ratio:1/1.05;
+    box-shadow:var(--shadow);
+  }
+  .portrait-caption{
+    margin-top:.85rem;font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.05em;
+    text-transform:uppercase;color:var(--text-soft);text-align:center;
   }
 
-  /* ─── AWARDS ─── */
-  #awards { background: var(--deep); }
-  .awards-inner { max-width: 1000px; margin: 0 auto; }
-  .award-row {
-    display: grid;
-    grid-template-columns: 80px 1fr auto;
-    gap: 32px;
-    align-items: center;
-    padding: 36px 0;
-    border-bottom: 1px solid var(--border);
-    transition: background 0.2s;
+  /* ============ PRACTICE CARDS ============ */
+  .practice-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.3rem;}
+  .practice-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;transition:transform .4s var(--ease), box-shadow .4s var(--ease);
   }
-  .award-row:first-of-type { border-top: 1px solid var(--border); }
-  .award-year {
-    font-family: var(--font-display);
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--gold);
-    opacity: 0.55;
+  .practice-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);}
+  .practice-card .photo{aspect-ratio:5/4;border-radius:0;}
+  .practice-body{padding:1.6rem 1.5rem;}
+  .practice-num{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--accent);letter-spacing:.05em;}
+  .practice-card h3{font-size:1.18rem;margin:.7rem 0 .6rem;}
+  .practice-card p{color:var(--text-soft);font-size:.89rem;}
+
+  /* ============ FEATURED WORK ============ */
+  .work-list{display:flex;flex-direction:column;gap:1.2rem;}
+  .work-item{
+    display:grid;grid-template-columns:.85fr 1.15fr;
+    background:var(--ink);border-radius:var(--radius);overflow:hidden;min-height:320px;
   }
-  .award-name {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--white);
-    margin-bottom: 4px;
+  .work-item:nth-child(even){grid-template-columns:1.15fr .85fr;}
+  .work-item:nth-child(even) .work-art{order:2;}
+  .work-art{position:relative;border-radius:0;}
+  .work-copy{padding:2.8rem;color:var(--text-cream);display:flex;flex-direction:column;justify-content:center;}
+  .work-year{font-family:'Space Mono',monospace;color:var(--gold);font-size:.76rem;letter-spacing:.08em;}
+  .work-copy h3{font-size:1.7rem;margin:.6rem 0 .25rem;color:var(--text-cream);}
+  .work-role{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--text-cream-soft);letter-spacing:.04em;text-transform:uppercase;margin-bottom:1.1rem;}
+  .work-copy p{color:var(--text-cream-soft);font-size:.93rem;max-width:460px;}
+
+  /* ============ FILMOGRAPHY LEDGER ============ */
+  .ledger{width:100%;border-collapse:collapse;font-size:.93rem;}
+  .ledger thead th{
+    text-align:left;font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--text-soft);padding-bottom:.9rem;border-bottom:1px solid var(--line);
   }
-  .award-cat {
-    font-size: 0.78rem;
-    color: var(--grey);
+  .ledger tbody tr{border-bottom:1px solid var(--line);transition:background .3s;}
+  .ledger tbody tr:hover{background:rgba(224,122,62,.06);}
+  .ledger tbody td{padding:1rem .4rem;vertical-align:top;}
+  .ledger .yr{font-family:'Space Mono',monospace;color:var(--accent);font-weight:700;white-space:nowrap;width:70px;}
+  .ledger .ttl{font-family:'Fraunces',serif;font-weight:500;font-size:1.02rem;}
+  .ledger .rl{color:var(--text-soft);font-size:.84rem;text-align:right;}
+
+  /* ============ RECOGNITION ============ */
+  .stamp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;}
+  .stamp-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    padding:1.8rem;transition:transform .4s var(--ease), box-shadow .4s var(--ease);
   }
-  .award-badge {
-    font-size: 0.62rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    padding: 6px 14px;
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    white-space: nowrap;
+  .stamp-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);}
+  .stamp-badge{
+    width:46px;height:46px;border-radius:50%;background:var(--accent);color:var(--paper);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Space Mono',monospace;font-weight:700;font-size:.82rem;margin-bottom:1.2rem;
+  }
+  .stamp-name{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:600;margin-bottom:.4rem;}
+  .stamp-result{font-size:.86rem;color:var(--text-soft);}
+
+  /* ============ COMMUNITY ============ */
+  .community{background:var(--ink);color:var(--text-cream);}
+  .community-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:4rem;align-items:start;}
+  .community-grid p{color:var(--text-cream-soft);font-size:1.02rem;margin-bottom:1.2rem;max-width:520px;}
+  .care-list{display:flex;flex-direction:column;gap:.85rem;margin-top:1.6rem;}
+  .care-item{display:flex;gap:.85rem;align-items:flex-start;font-size:.92rem;color:var(--text-cream-soft);}
+  .care-item .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:.5rem;flex-shrink:0;}
+
+  .vision-card{background:var(--ink-2);border:1px solid var(--line-dark);border-radius:var(--radius);padding:2.3rem 2rem;}
+  .vision-card h4{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;}
+  .vision-card blockquote{font-family:'Fraunces',serif;font-style:italic;font-size:1.4rem;line-height:1.5;}
+  .community-photo{aspect-ratio:4/3;margin-top:1.3rem;}
+  .tag-cloud{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:2rem;}
+  .tag-pill{
+    font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.03em;
+    border:1px solid var(--line-dark);color:var(--text-cream-soft);
+    padding:.48rem .95rem;border-radius:100px;
   }
 
-  /* ─── STATEMENT ─── */
-  #statement {
-    background: var(--black);
-    text-align: center;
-    padding: 140px 60px;
-  }
-  .statement-inner { max-width: 800px; margin: 0 auto; }
-  .statement-quote {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: clamp(1.5rem, 3vw, 2.4rem);
-    line-height: 1.5;
-    color: var(--white);
-    margin-bottom: 32px;
-  }
-  .statement-attr {
-    font-size: 0.72rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
-  .big-quote-mark {
-    font-family: var(--font-display);
-    font-size: 8rem;
-    color: var(--gold);
-    opacity: 0.12;
-    line-height: 0.6;
-    margin-bottom: 30px;
-  }
+  /* ============ TOOLKIT + TIMELINE ============ */
+  .tt-grid{display:grid;grid-template-columns:1fr 1fr;gap:4.5rem;}
+  .toolkit-group{margin-bottom:2.2rem;}
+  .toolkit-group h4{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.95rem;}
+  .toolkit-tags{display:flex;flex-wrap:wrap;gap:.5rem;}
+  .toolkit-tags span{font-size:.82rem;border:1px solid var(--line);padding:.42rem .85rem;border-radius:100px;color:var(--text-soft);}
+  .lang-row{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:.65rem 0;font-size:.9rem;}
+  .lang-row:last-child{border-bottom:none;}
+  .lang-row span:last-child{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--rose);}
 
-  /* ─── CONTACT ─── */
-  #contact { background: var(--slate); }
-  .contact-inner {
-    max-width: 1100px; margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
+  .timeline{position:relative;padding-left:1.9rem;}
+  .timeline::before{content:'';position:absolute;left:0;top:6px;bottom:6px;width:1px;background:var(--line);}
+  .t-item{position:relative;padding-bottom:1.9rem;}
+  .t-item:last-child{padding-bottom:0;}
+  .t-item::before{
+    content:'';position:absolute;left:-1.97rem;top:4px;width:9px;height:9px;border-radius:50%;
+    background:var(--paper);border:2px solid var(--accent);
   }
-  .contact-info-item {
-    display: flex; align-items: flex-start; gap: 20px;
-    padding: 24px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .contact-icon {
-    width: 40px; height: 40px;
-    border: 1px solid var(--gold);
-    display: grid; place-items: center;
-    flex-shrink: 0;
-    color: var(--gold);
-    font-size: 1rem;
-  }
-  .contact-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--grey);
-    margin-bottom: 4px;
-  }
-  .contact-value {
-    font-size: 0.9rem;
-    color: var(--white);
-  }
-  .contact-value a {
-    color: var(--white);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .contact-value a:hover { color: var(--gold); }
+  .t-year{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--accent);letter-spacing:.04em;}
+  .t-item h4{font-size:1.04rem;margin:.3rem 0 .15rem;font-weight:600;}
+  .t-item p{color:var(--text-soft);font-size:.86rem;}
+  .org-tags{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.8rem;}
 
-  .contact-social { margin-top: 40px; }
-  .social-link {
-    display: flex; align-items: center; gap: 14px;
-    padding: 14px 20px;
-    border: 1px solid var(--border);
-    margin-bottom: 8px;
-    text-decoration: none;
-    color: var(--grey);
-    font-size: 0.78rem;
-    transition: border-color 0.3s, color 0.3s, background 0.3s;
-  }
-  .social-link:hover { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
-  .social-dot {
-    width: 6px; height: 6px;
-    background: var(--gold);
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
+  /* ============ ON SET BANNER ============ */
+  .banner{position:relative;height:46vh;min-height:340px;background-color:var(--ink);background-size:cover;background-position:center;display:flex;align-items:flex-end;}
+  .banner::before{content:'';position:absolute;inset:0;background:linear-gradient(0deg, rgba(10,23,25,.78) 0%, rgba(10,23,25,.1) 60%);}
+  .banner-caption{position:relative;z-index:1;padding:2.4rem 6vw;color:var(--text-cream);}
+  .banner-caption .eyebrow{margin-bottom:.5rem;}
+  .banner-caption h3{font-size:1.6rem;}
 
-  /* ─── FOOTER ─── */
-  footer {
-    background: var(--black);
-    border-top: 1px solid var(--border);
-    padding: 32px 60px;
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .footer-logo {
-    font-family: var(--font-display);
-    font-size: 0.9rem;
-    color: var(--gold);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
-  .footer-copy {
-    font-size: 0.7rem;
-    color: var(--grey);
-    letter-spacing: 0.06em;
-  }
+  /* ============ REFERENCES ============ */
+  .ref-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;}
+  .ref-card{border:1px solid var(--line);border-radius:var(--radius);padding:1.8rem;background:var(--paper);}
+  .ref-card .r-name{font-family:'Fraunces',serif;font-size:1.12rem;font-weight:600;}
+  .ref-card .r-role{color:var(--text-soft);font-size:.84rem;margin-top:.4rem;min-height:2.5em;}
+  .ref-card .r-phone{font-family:'Space Mono',monospace;font-size:.8rem;margin-top:.95rem;color:var(--accent);}
 
-  /* ─── SCROLLBAR ─── */
-  ::-webkit-scrollbar { width: 3px; }
-  ::-webkit-scrollbar-track { background: var(--black); }
-  ::-webkit-scrollbar-thumb { background: var(--gold); }
+  /* ============ FOOTER ============ */
+  .footer{background:var(--ink-2);color:var(--text-cream);padding:6rem 0 2.6rem;}
+  .footer-top{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:2.5rem;margin-bottom:4.5rem;}
+  .footer-top h2{font-size:clamp(2.2rem,5.6vw,4rem);max-width:660px;line-height:1.08;}
+  .footer-contacts{display:flex;flex-direction:column;gap:1rem;align-items:flex-start;}
+  .footer-contacts a{font-family:'Space Mono',monospace;font-size:.98rem;color:var(--gold);border-bottom:1px solid transparent;transition:border-color .3s;}
+  .footer-contacts a:hover{border-color:var(--gold);}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.4rem;border-top:1px solid var(--line-dark);padding-top:2rem;}
+  .footer-socials{display:flex;gap:1.5rem;flex-wrap:wrap;}
+  .footer-socials a{font-family:'Space Mono',monospace;font-size:.73rem;letter-spacing:.04em;text-transform:uppercase;color:var(--text-cream-soft);transition:color .3s;}
+  .footer-socials a:hover{color:var(--gold);}
+  .footer-copy{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--text-cream-soft);}
 
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 900px) {
-    section { padding: 80px 28px; }
-    nav { padding: 20px 28px; }
-    nav.scrolled { padding: 14px 28px; }
-    .nav-links { display: none; }
-    .hero-content { padding: 0 28px 120px; max-width: 100%; }
-    .hero-stats { right: 28px; bottom: 100px; gap: 28px; }
-    .hero-photo-wrap { width: 100%; opacity: 0.35; }
-    .about-grid { grid-template-columns: 1fr; }
-    .about-img-stack { height: 360px; }
-    .gallery-grid { grid-template-columns: 1fr 1fr; }
-    .gallery-item:first-child, .gallery-item:last-child { grid-column: span 1; }
-    .contact-inner { grid-template-columns: 1fr; gap: 40px; }
-    .award-row { grid-template-columns: 60px 1fr; }
-    .award-badge { display: none; }
-    footer { flex-direction: column; gap: 12px; text-align: center; }
-    .film-scroll-wrap { padding: 0 28px 40px; }
-    .sprockets { padding: 12px 28px; }
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:980px){
+    .about-grid,.community-grid,.tt-grid{grid-template-columns:1fr;gap:2.8rem;}
+    .practice-grid{grid-template-columns:repeat(2,1fr);}
+    .work-item,.work-item:nth-child(even){grid-template-columns:1fr;}
+    .work-art{height:220px;}
+    .work-item:nth-child(even) .work-art{order:0;}
+    .stamp-grid{grid-template-columns:repeat(2,1fr);}
+    .ref-grid{grid-template-columns:1fr;}
+    .hero-stats{grid-template-columns:repeat(2,1fr);row-gap:1.8rem;}
   }
-
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation: none !important; transition: none !important; }
+  @media (max-width:720px){
+    .nav-links{display:none;}
+    .nav-toggle{display:block;}
+    .practice-grid{grid-template-columns:1fr;}
+    .stamp-grid{grid-template-columns:1fr;}
+    .ledger .rl{text-align:left;display:block;margin-top:.2rem;}
+    .ledger thead th:last-child{display:none;}
+    .footer-top{flex-direction:column;align-items:flex-start;}
   }
 </style>
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
-<!-- NAV -->
-<nav id="mainNav">
-  <a href="#hero" class="nav-logo">KG</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#filmography">Films</a></li>
-    <li><a href="#awards">Awards</a></li>
-    <li><a href="#gallery">Gallery</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+<nav class="nav" id="nav">
+  <a href="#top" class="nav-mark"><span class="ring">KG</span> Kasoba Godwin</a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#practice">Practice</a>
+    <a href="#work">Work</a>
+    <a href="#films">Filmography</a>
+    <a href="#recognition">Recognition</a>
+    <a href="#community">Community</a>
+    <a href="#contact" class="nav-cta">Contact</a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-photo-wrap">
-    <img class="hero-photo" id="heroPhoto" src="godwin1.jpg" alt="Kasoba Godwin" />
+<header class="hero" id="top">
+  <div class="hero-slides">
+    <div class="hero-slide" style="background-image:url('godwin1.jpg');"></div>
+    <div class="hero-slide" style="background-image:url('godwin2.jpg');"></div>
+    <div class="hero-slide" style="background-image:url('godwin3.jpg');"></div>
+    <div class="hero-slide" style="background-image:url('godwin4.jpg');"></div>
+    <div class="hero-slide" style="background-image:url('godwin5.jpg');"></div>
+    <div class="hero-slide" style="background-image:url('godwin6.jpg');"></div>
+    <div class="hero-slide" style="background-image:url('godwin7.jpg');"></div>
+    <div class="hero-slide" style="background-image:url('godwin8.jpg');"></div>
+    <div class="hero-slide" style="background-image:url('godwin9.jpg');"></div>
+    <div class="hero-slide" style="background-image:url('godwin10.jpg');"></div>
   </div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">SaintHood Film Production · Kasese, Uganda · Est. 2017</p>
-    <h1 class="hero-name">
-      <span class="first">Kasoba</span>
-      <span class="last">Godwin</span>
-    </h1>
-    <p class="hero-roles">Filmmaker &nbsp;·&nbsp; Director &nbsp;·&nbsp; Screenwriter<br>Producer &nbsp;·&nbsp; Actor</p>
-    <a href="#about" class="hero-cta">
-      Explore the Work
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </a>
-  </div>
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <span class="num" id="statYears">0</span>
-      <span class="lbl">Years<br>Experience</span>
-    </div>
-    <div class="hero-stat">
-      <span class="num" id="statFilms">0</span>
-      <span class="lbl">Films<br>Completed</span>
-    </div>
-    <div class="hero-stat">
-      <span class="num" id="statFest">0</span>
-      <span class="lbl">Festival<br>Selections</span>
-    </div>
-  </div>
-  <div class="filmstrip" id="heroFilmstrip"></div>
-</section>
+  <div class="hero-overlay"></div>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="about-grid">
-    <div>
-      <p class="section-eyebrow reveal">About</p>
-      <h2 class="section-title reveal reveal-delay-1">Stories Rooted<br>in Real Life</h2>
-      <blockquote class="about-quote reveal reveal-delay-2">
-        "Film is a powerful tool for preserving culture, inspiring hope, and giving voice to overlooked communities."
-      </blockquote>
-      <div class="about-text reveal reveal-delay-3">
-        <p>Kasoba Godwin is a Ugandan filmmaker, producer, director, screenwriter, and actor whose work reflects a deep commitment to authentic storytelling and social impact. With over 9 years of experience and more than 11 completed projects, he has built a diverse and dynamic portfolio across multiple roles in the film industry.</p>
-        <p>He is the founder and head of SaintHood Film Production, based in Kasese, Uganda — dedicated to developing compelling stories and nurturing local talent within the region's growing film industry.</p>
-        <p>His films have received recognition at regional and international levels, including official selections in festivals across Uganda, the United Kingdom, and internationally.</p>
-      </div>
+  <div class="wrap hero-inner">
+    <div class="hero-eyebrow"><span class="dash"></span> Kasese, Uganda — Est. 2017</div>
+    <h1 class="serif">Kasoba<br><em>Godwin</em></h1>
+    <p class="hero-sub">Filmmaker, storyteller and community builder working at the foot of the Rwenzori Mountains — telling Uganda's stories on screen, and showing up for his neighbours off it.</p>
+
+    <div class="hero-roles">
+      <span class="role-chip">Director</span>
+      <span class="role-chip">Screenwriter</span>
+      <span class="role-chip">Producer</span>
+      <span class="role-chip">Cinematographer</span>
+      <span class="role-chip">Actor</span>
+      <span class="role-chip">Founder, SaintHood Film Production</span>
     </div>
-    <div class="about-img-stack reveal reveal-delay-2">
-      <div class="about-gold-block"></div>
-      <img class="about-img main" src="godwin2.jpg" alt="Kasoba Godwin on set" />
-      <img class="about-img accent" src="godwin3.jpg" alt="Behind the scenes" />
+
+    <div class="hero-ctas">
+      <a href="#work" class="btn btn-solid">View the Work →</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
     </div>
+
+    <div class="hero-stats">
+      <div><div class="stat-num">9+</div><div class="stat-label">Years Filmmaking</div></div>
+      <div><div class="stat-num">11+</div><div class="stat-label">Projects Completed</div></div>
+      <div><div class="stat-num">5</div><div class="stat-label">Festival Selections</div></div>
+      <div><div class="stat-num">2</div><div class="stat-label">Industry Memberships</div></div>
+    </div>
+  </div>
+</header>
+
+<section class="manifesto on-dark reveal">
+  <div class="wrap">
+    <blockquote>"Film is a powerful tool for preserving culture, inspiring hope, and giving voice to overlooked communities. My work focuses on authentic African stories that create social impact while entertaining audiences."</blockquote>
+    <cite>— Kasoba Godwin</cite>
   </div>
 </section>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="skills-inner">
-    <p class="section-eyebrow reveal">Expertise</p>
-    <h2 class="section-title reveal reveal-delay-1">Craft &<br>Capabilities</h2>
-    <div class="skills-grid">
-      <div class="skill-card reveal reveal-delay-1">
-        <div class="skill-icon">🎬</div>
-        <div class="skill-name">Film Directing</div>
-        <div class="skill-sub">Creative vision and leadership across narrative and documentary formats</div>
+<section class="section section-light" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="eyebrow">About</div>
+        <h2>Rooted in Kasese,<br>reaching far beyond it.</h2>
+        <p style="margin-top:2rem;">Kasoba Godwin is a Ugandan filmmaker, producer, director, screenwriter and actor whose work reflects a deep commitment to authentic storytelling and social impact. Over nine years and eleven completed projects, he's built a portfolio that moves across roles rather than settling into one — directing one year, producing the next, stepping in front of the camera when the story calls for it.</p>
+        <p>He founded SaintHood Film Production in 2017, a Kasese-based company dedicated to developing compelling stories and nurturing local talent in Western Uganda's growing film scene. His storytelling stays close to real life — resilience, social challenges, love and human transformation — and it has carried him to recognition in Uganda, the United Kingdom and beyond.</p>
+        <p>But the camera is only one of his tools. Kasoba lives within the FAPCAN community in Kasese, where caring for orphans, widows, elderly and disabled neighbours is as much a part of his daily practice as writing a script — two ways of doing the same work: paying attention to people who are easy to overlook.</p>
       </div>
-      <div class="skill-card reveal reveal-delay-2">
-        <div class="skill-icon">✍️</div>
-        <div class="skill-name">Screenwriting</div>
-        <div class="skill-sub">Story development grounded in real-life community narratives</div>
-      </div>
-      <div class="skill-card reveal reveal-delay-3">
-        <div class="skill-icon">📽️</div>
-        <div class="skill-name">Documentary Production</div>
-        <div class="skill-sub">Cultural and social-impact documentaries from Kasese and beyond</div>
-      </div>
-      <div class="skill-card reveal reveal-delay-1">
-        <div class="skill-icon">📷</div>
-        <div class="skill-name">Cinematography</div>
-        <div class="skill-sub">Framing authentic African landscapes and human stories</div>
-      </div>
-      <div class="skill-card reveal reveal-delay-2">
-        <div class="skill-icon">🎞️</div>
-        <div class="skill-name">Video Editing</div>
-        <div class="skill-sub">Adobe Premiere Pro · CapCut · Post-production pipeline management</div>
-      </div>
-      <div class="skill-card reveal reveal-delay-3">
-        <div class="skill-icon">🎭</div>
-        <div class="skill-name">Acting & Performance</div>
-        <div class="skill-sub">On-screen performance and directing actors with authenticity</div>
-      </div>
-      <div class="skill-card reveal reveal-delay-1">
-        <div class="skill-icon">🔊</div>
-        <div class="skill-name">Sound & Lighting</div>
-        <div class="skill-sub">Production audio and lighting design for low-resource environments</div>
-      </div>
-      <div class="skill-card reveal reveal-delay-2">
-        <div class="skill-icon">🌍</div>
-        <div class="skill-name">Community Engagement</div>
-        <div class="skill-sub">Film as a tool for social change, advocacy, and youth empowerment</div>
-      </div>
-      <div class="skill-card reveal reveal-delay-3">
-        <div class="skill-icon">🎨</div>
-        <div class="skill-name">Photography</div>
-        <div class="skill-sub">Still photography and visual storytelling on and off set</div>
+
+      <div class="reveal">
+        <div class="field-card">
+          <h4>Field Notes</h4>
+          <div class="field-row"><span>Based In</span><span>Kasese, Uganda</span></div>
+          <div class="field-row"><span>Production House</span><span>SaintHood Film Production</span></div>
+          <div class="field-row"><span>Founded</span><span>2017</span></div>
+          <div class="field-row"><span>Languages</span><span>English, Lukonzo, Luganda, Swahili</span></div>
+          <div class="field-row"><span>Memberships</span><span>UFMI, WUFPA</span></div>
+          <div class="field-row"><span>Phone</span><span>0754 140770</span></div>
+          <div class="field-row"><span>Email</span><span>ofassisif500@gmail.com</span></div>
+        </div>
+        <div class="portrait-frame photo" style="background-image:url('godwin1.jpg'); background-color:var(--teal);"></div>
+        <div class="portrait-caption">Kasoba Godwin — Kasese, Uganda</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FILMOGRAPHY -->
-<section id="filmography" style="padding-left:0;padding-right:0;padding-bottom:0;">
-  <div style="padding:0 60px;max-width:1200px;margin:0 auto 48px;">
-    <p class="section-eyebrow reveal">Filmography</p>
-    <h2 class="section-title reveal reveal-delay-1" style="margin-bottom:0;">13 Projects.<br>One Vision.</h2>
-  </div>
-  <div class="sprockets" id="topSprockets"></div>
-  <div class="film-scroll-wrap" id="filmScroll">
-    <div class="film-strip-row" id="filmStrip"></div>
-  </div>
-  <div class="sprockets" id="bottomSprockets"></div>
-</section>
-
-<!-- GALLERY -->
-<section id="gallery">
-  <div class="gallery-inner">
-    <p class="section-eyebrow reveal">Gallery</p>
-    <h2 class="section-title reveal reveal-delay-1">Behind<br>the Lens</h2>
-    <div class="gallery-grid reveal reveal-delay-2">
-      <div class="gallery-item">
-        <img src="godwin1.jpg" alt="Kasoba Godwin" />
-        <div class="gallery-overlay"><span class="gallery-label">Portrait</span></div>
-      </div>
-      <div class="gallery-item">
-        <img src="godwin4.jpg" alt="On set" />
-        <div class="gallery-overlay"><span class="gallery-label">On Set</span></div>
-      </div>
-      <div class="gallery-item">
-        <img src="godwin5.jpg" alt="Directing" />
-        <div class="gallery-overlay"><span class="gallery-label">Directing</span></div>
-      </div>
-      <div class="gallery-item">
-        <img src="godwin2.jpg" alt="Production" />
-        <div class="gallery-overlay"><span class="gallery-label">Production</span></div>
-      </div>
-      <div class="gallery-item">
-        <img src="godwin6.jpg" alt="Community" />
-        <div class="gallery-overlay"><span class="gallery-label">Community</span></div>
-      </div>
+<section class="section section-mist" id="practice">
+  <div class="wrap">
+    <div class="head-row reveal">
+      <h2>More than one craft,<br>one mission.</h2>
+      <p class="head-note">Film is one language Kasoba works in. Production, performance and community care are the others — and none of them is the side project.</p>
     </div>
-  </div>
-</section>
 
-<!-- AWARDS -->
-<section id="awards">
-  <div class="awards-inner">
-    <p class="section-eyebrow reveal">Recognition</p>
-    <h2 class="section-title reveal reveal-delay-1">Awards &<br>Selections</h2>
-    <div id="awardsList"></div>
-  </div>
-</section>
-
-<!-- DIRECTOR'S STATEMENT -->
-<section id="statement">
-  <div class="statement-inner reveal">
-    <div class="big-quote-mark">"</div>
-    <p class="statement-quote">
-      To create powerful films that preserve history, inspire hope, and transform communities across Africa and beyond.
-    </p>
-    <p class="statement-attr">— Kasoba Godwin, Founder · SaintHood Film Production</p>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-inner">
-    <div>
-      <p class="section-eyebrow reveal">Get in Touch</p>
-      <h2 class="section-title reveal reveal-delay-1" style="margin-bottom:32px;">Let's Create<br>Together</h2>
-      <div class="contact-info-item reveal reveal-delay-2">
-        <div class="contact-icon">📍</div>
-        <div>
-          <div class="contact-label">Location</div>
-          <div class="contact-value">Kasese, Uganda</div>
+    <div class="practice-grid">
+      <div class="practice-card reveal">
+        <div class="photo" style="background-image:url('godwin2.jpg'); background-color:var(--teal);"></div>
+        <div class="practice-body">
+          <div class="practice-num">01</div>
+          <h3>Direction &amp; Story</h3>
+          <p>Directing and writing scripts that follow Kasese's own rhythms — from the quiet drama of <em>The Pain of Regret</em> to the documentary pace of <em>Seeds of Rwenzori</em>, built in Final Draft and Celtx.</p>
         </div>
       </div>
-      <div class="contact-info-item reveal reveal-delay-2">
-        <div class="contact-icon">📧</div>
-        <div>
-          <div class="contact-label">Email</div>
-          <div class="contact-value"><a href="mailto:ofassisif500@gmail.com">ofassisif500@gmail.com</a></div>
+      <div class="practice-card reveal">
+        <div class="photo" style="background-image:url('godwin3.jpg'); background-color:var(--teal);"></div>
+        <div class="practice-body">
+          <div class="practice-num">02</div>
+          <h3>Behind the Camera</h3>
+          <p>Cinematography, editing, sound and lighting — the technical craft that holds a film together, refined in long hours inside Premiere Pro and CapCut.</p>
         </div>
       </div>
-      <div class="contact-info-item reveal reveal-delay-3">
-        <div class="contact-icon">📞</div>
-        <div>
-          <div class="contact-label">Phone</div>
-          <div class="contact-value">0754140770 / 0784724177</div>
+      <div class="practice-card reveal">
+        <div class="photo" style="background-image:url('godwin4.jpg'); background-color:var(--teal);"></div>
+        <div class="practice-body">
+          <div class="practice-num">03</div>
+          <h3>Producing &amp; Leadership</h3>
+          <p>Founder and head of SaintHood Film Production since 2017 — producing and executive-producing projects from <em>Gift from Heaven</em> to <em>Rotten Heart</em>, end to end.</p>
         </div>
       </div>
-      <div class="contact-info-item reveal reveal-delay-4">
-        <div class="contact-icon">🎬</div>
-        <div>
-          <div class="contact-label">Production Company</div>
-          <div class="contact-value">SaintHood Film Production</div>
-        </div>
-      </div>
-    </div>
-    <div>
-      <p class="section-eyebrow reveal">Online Presence</p>
-      <div class="contact-social reveal reveal-delay-1">
-        <a href="https://filmfreeway.com/KasobaGodwin" target="_blank" class="social-link">
-          <span class="social-dot"></span> FilmFreeway — filmfreeway.com/KasobaGodwin
-        </a>
-        <a href="https://www.facebook.com/KasemboGodwin" target="_blank" class="social-link">
-          <span class="social-dot"></span> Facebook — Kasembo Godwin
-        </a>
-        <a href="https://www.instagram.com/kasembogodwinfrancisemmanuel" target="_blank" class="social-link">
-          <span class="social-dot"></span> Instagram — @kasembogodwinfrancisemmanuel
-        </a>
-        <a href="https://youtube.com/@francisofassisi2622" target="_blank" class="social-link">
-          <span class="social-dot"></span> YouTube — @francisofassisi2622
-        </a>
-      </div>
-      <div style="margin-top:40px;" class="reveal reveal-delay-2">
-        <p class="section-eyebrow">Memberships</p>
-        <div style="display:flex;gap:16px;margin-top:16px;flex-wrap:wrap;">
-          <div style="border:1px solid var(--border);padding:12px 20px;font-size:0.75rem;letter-spacing:0.1em;color:var(--white);">UFMI</div>
-          <div style="border:1px solid var(--border);padding:12px 20px;font-size:0.75rem;letter-spacing:0.1em;color:var(--white);">WUFPA</div>
-          <div style="border:1px solid var(--border);padding:12px 20px;font-size:0.75rem;letter-spacing:0.1em;color:var(--white);">FAPCAN</div>
+      <div class="practice-card reveal">
+        <div class="photo" style="background-image:url('godwin5.jpg'); background-color:var(--teal);"></div>
+        <div class="practice-body">
+          <div class="practice-num">04</div>
+          <h3>Community &amp; Social Impact</h3>
+          <p>A resident of the FAPCAN community, supporting orphans, widows, elderly and disabled neighbours — work he treats as inseparable from the stories he tells on screen.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <span class="footer-logo">Kasoba Godwin</span>
-  <span class="footer-copy">© 2026 SaintHood Film Production · Kasese, Uganda</span>
+<section class="section section-light" id="work">
+  <div class="wrap">
+    <div class="head-row reveal">
+      <h2>Featured Work</h2>
+      <p class="head-note">Three recent projects, all shot in the foothills of the Rwenzori — about land, dignity, and the people who work both.</p>
+    </div>
+
+    <div class="work-list">
+      <div class="work-item reveal">
+        <div class="work-art photo" style="background-image:url('godwin6.jpg'); background-color:var(--teal);"></div>
+        <div class="work-copy">
+          <div class="work-year">2026</div>
+          <h3 class="serif">Seeds of Rwenzori</h3>
+          <div class="work-role">Director / Producer</div>
+          <p>A journey into Kasese District, where the Bakonzo community plants beans and maize in rich black soil beneath the Rwenzori Mountains. The film follows the work of a planting season — and the songs, dances and shared meals that surround it.</p>
+        </div>
+      </div>
+
+      <div class="work-item reveal">
+        <div class="work-art photo" style="background-image:url('godwin7.jpg'); background-color:var(--teal);"></div>
+        <div class="work-copy">
+          <div class="work-year">2025</div>
+          <h3 class="serif">Beans Our Food</h3>
+          <div class="work-role">Director / Producer</div>
+          <p>In the foothills of the Rwenzori, beans are more than a crop — they pay school fees and steady whole households. This documentary follows the farmers who plant, harvest, dry and clean them by hand, season after season.</p>
+        </div>
+      </div>
+
+      <div class="work-item reveal">
+        <div class="work-art photo" style="background-image:url('godwin8.jpg'); background-color:var(--teal);"></div>
+        <div class="work-copy">
+          <div class="work-year">2026</div>
+          <h3 class="serif">The Blind Boy</h3>
+          <div class="work-role">Cinematographer / Director</div>
+          <p>A blind boy is struck and abandoned by a careless rider on a quiet road. When that same rider later breaks down nearby, it's the boy he wronged who returns a missing part — a short, quiet story about grace finding its way back.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-mist" id="films">
+  <div class="wrap">
+    <div class="head-row reveal">
+      <h2>Filmography</h2>
+      <p class="head-note">Eleven projects and counting, logged the way a field journal keeps record — by year, title and role.</p>
+    </div>
+
+    <div class="reveal" style="overflow-x:auto;">
+      <table class="ledger">
+        <thead>
+          <tr><th>Year</th><th>Title</th><th style="text-align:right;">Role</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="yr">2022</td><td class="ttl">Gift from Heaven</td><td class="rl">Producer</td></tr>
+          <tr><td class="yr">2023</td><td class="ttl">Revenge</td><td class="rl">Executive Producer</td></tr>
+          <tr><td class="yr">2023</td><td class="ttl">The Strange Hunchback</td><td class="rl">Director</td></tr>
+          <tr><td class="yr">2023</td><td class="ttl">The Pain of Regret</td><td class="rl">Director</td></tr>
+          <tr><td class="yr">2024</td><td class="ttl">Coffee Love</td><td class="rl">Main Actor / Scriptwriter</td></tr>
+          <tr><td class="yr">2024</td><td class="ttl">Broken Hope</td><td class="rl">Director / Scriptwriter / Producer</td></tr>
+          <tr><td class="yr">2025</td><td class="ttl">The Calling</td><td class="rl">Director</td></tr>
+          <tr><td class="yr">2025</td><td class="ttl">Beans Our Food</td><td class="rl">Director / Producer</td></tr>
+          <tr><td class="yr">2025</td><td class="ttl">Sharon Story</td><td class="rl">—</td></tr>
+          <tr><td class="yr">2026</td><td class="ttl">Plastic Wastes</td><td class="rl">Director / Editor</td></tr>
+          <tr><td class="yr">2026</td><td class="ttl">The Blind Boy</td><td class="rl">Cinematographer / Director</td></tr>
+          <tr><td class="yr">2026</td><td class="ttl">Seeds of Rwenzori</td><td class="rl">Director / Producer</td></tr>
+          <tr><td class="yr">2026</td><td class="ttl">Rotten Heart</td><td class="rl">Executive Producer</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section section-light" id="recognition">
+  <div class="wrap">
+    <div class="head-row reveal">
+      <h2>Recognition</h2>
+      <p class="head-note">Selections and nominations that mark the distance a story has travelled.</p>
+    </div>
+
+    <div class="stamp-grid">
+      <div class="stamp-card reveal">
+        <div class="stamp-badge mono">25</div>
+        <div class="stamp-name serif">UCC Uganda Regional Film Competition</div>
+        <div class="stamp-result">Official Selection / Nominee</div>
+      </div>
+      <div class="stamp-card reveal">
+        <div class="stamp-badge mono">25</div>
+        <div class="stamp-name serif">Uganda Film 256</div>
+        <div class="stamp-result">Certificate of Recognition</div>
+      </div>
+      <div class="stamp-card reveal">
+        <div class="stamp-badge mono">25</div>
+        <div class="stamp-name serif">WUFPA Award Gala</div>
+        <div class="stamp-result">Western Uganda Film Producers Assoc., Nominee</div>
+      </div>
+      <div class="stamp-card reveal">
+        <div class="stamp-badge mono">26</div>
+        <div class="stamp-name serif">International Creative Shorts Festival</div>
+        <div class="stamp-result">Official Selection</div>
+      </div>
+      <div class="stamp-card reveal">
+        <div class="stamp-badge mono">26</div>
+        <div class="stamp-name serif">Rivers International Film Festival</div>
+        <div class="stamp-result">Official Selection</div>
+      </div>
+      <div class="stamp-card reveal">
+        <div class="stamp-badge mono">26</div>
+        <div class="stamp-name serif">Frome Intl. Climate Film Festival</div>
+        <div class="stamp-result">Official Selection — United Kingdom</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section community" id="community">
+  <div class="wrap">
+    <div class="community-grid">
+      <div class="reveal">
+        <div class="eyebrow on-dark">Beyond the Frame</div>
+        <h2 style="color:var(--text-cream);">A practice that doesn't end<br>when the camera stops.</h2>
+        <p style="margin-top:1.6rem;">Kasoba lives within the FAPCAN community in Kasese, where caring for people who are easy to overlook is daily work, not an outreach campaign. He sees it as the same instinct that drives his films — paying close attention to lives that don't usually make it to a screen.</p>
+        <div class="care-list">
+          <div class="care-item"><span class="dot"></span> Care and support for orphans and vulnerable children</div>
+          <div class="care-item"><span class="dot"></span> Support for widows and elderly persons in the community</div>
+          <div class="care-item"><span class="dot"></span> Advocacy and assistance for persons with disabilities</div>
+          <div class="care-item"><span class="dot"></span> Shelter and welfare support for homeless individuals</div>
+          <div class="care-item"><span class="dot"></span> Film and storytelling used as a tool for community awareness</div>
+        </div>
+        <div class="tag-cloud">
+          <span class="tag-pill">Humanitarian Storytelling</span>
+          <span class="tag-pill">Youth Empowerment</span>
+          <span class="tag-pill">Cultural Preservation</span>
+          <span class="tag-pill">Climate Storytelling</span>
+          <span class="tag-pill">Pan-African Narratives</span>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="vision-card">
+          <h4>Vision</h4>
+          <blockquote>"To create powerful films that preserve history, inspire hope, and transform communities across Africa and beyond."</blockquote>
+        </div>
+        <div class="community-photo photo" style="background-image:url('godwin9.jpg'); background-color:var(--teal);"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-light">
+  <div class="wrap">
+    <div class="head-row reveal">
+      <h2>Toolkit &amp; Timeline</h2>
+      <p class="head-note">The instruments he works with, and the path that put them in his hands.</p>
+    </div>
+
+    <div class="tt-grid">
+      <div class="reveal">
+        <div class="toolkit-group">
+          <h4>Craft</h4>
+          <div class="toolkit-tags">
+            <span>Film Directing</span><span>Screenwriting</span><span>Documentary Production</span>
+            <span>Cinematography</span><span>Video Editing</span><span>Sound &amp; Lighting</span>
+            <span>Acting &amp; Performance</span><span>Photography</span><span>Production Management</span>
+            <span>Community Engagement</span>
+          </div>
+        </div>
+        <div class="toolkit-group">
+          <h4>Software</h4>
+          <div class="toolkit-tags">
+            <span>Adobe Premiere Pro</span><span>CapCut</span><span>Adobe Photoshop</span>
+            <span>Final Draft</span><span>Celtx</span><span>Microsoft Office</span>
+          </div>
+        </div>
+        <div class="toolkit-group" style="margin-bottom:0;">
+          <h4>Languages</h4>
+          <div class="lang-row"><span>English</span><span>FLUENT</span></div>
+          <div class="lang-row"><span>Lukonzo</span><span>NATIVE</span></div>
+          <div class="lang-row"><span>Luganda</span><span>CONVERSATIONAL</span></div>
+          <div class="lang-row"><span>Swahili</span><span>BASIC</span></div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="timeline">
+          <div class="t-item">
+            <div class="t-year mono">2017</div>
+            <h4 class="serif">Founded SaintHood Film Production</h4>
+            <p>Kasese, Uganda</p>
+          </div>
+          <div class="t-item">
+            <div class="t-year mono">2018</div>
+            <h4 class="serif">Film Skills Training</h4>
+            <p>Film 256</p>
+          </div>
+          <div class="t-item">
+            <div class="t-year mono">2021 – 2023</div>
+            <h4 class="serif">Bachelor of Business Administration</h4>
+            <p>Uganda Pentecostal University</p>
+          </div>
+          <div class="t-item">
+            <div class="t-year mono">2024</div>
+            <h4 class="serif">Film Skills Training</h4>
+            <p>Proline Film Academy</p>
+          </div>
+          <div class="t-item">
+            <div class="t-year mono">2026</div>
+            <h4 class="serif">Advanced Film Skills Training</h4>
+            <p>Proline Film Academy</p>
+          </div>
+        </div>
+        <div class="org-tags">
+          <span class="tag-pill" style="border-color:var(--line);color:var(--text-soft);">Member — UFMI</span>
+          <span class="tag-pill" style="border-color:var(--line);color:var(--text-soft);">Member — WUFPA</span>
+          <span class="tag-pill" style="border-color:var(--line);color:var(--text-soft);">Resident — FAPCAN Community</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="banner" style="background-image:url('godwin10.jpg');">
+  <div class="banner-caption">
+    <div class="eyebrow on-dark">On Set</div>
+    <h3 class="serif">Kasese, Uganda</h3>
+  </div>
+</div>
+
+<section class="section section-mist">
+  <div class="wrap">
+    <div class="head-row reveal">
+      <h2>References</h2>
+      <p class="head-note">People who've worked alongside Kasoba and can speak to it directly.</p>
+    </div>
+    <div class="ref-grid">
+      <div class="ref-card reveal">
+        <div class="r-name serif">Bwambale Alfred</div>
+        <div class="r-role">CEO, Save Souls Film Industry</div>
+        <div class="r-phone">0779 993912</div>
+      </div>
+      <div class="ref-card reveal">
+        <div class="r-name serif">Amanya Leonard</div>
+        <div class="r-role">Film Producer, Director &amp; Curator — Uganda Film Festival</div>
+        <div class="r-phone">0774 244246</div>
+      </div>
+      <div class="ref-card reveal">
+        <div class="r-name serif">Mr. Katabazi George</div>
+        <div class="r-role">President, Producer &amp; Scriptwriter — WUFPA</div>
+        <div class="r-phone">0701 927701</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" id="contact">
+  <div class="wrap">
+    <div class="footer-top reveal">
+      <h2 class="serif">Let's tell<br>the next story.</h2>
+      <div class="footer-contacts">
+        <a href="mailto:ofassisif500@gmail.com">ofassisif500@gmail.com</a>
+        <a href="tel:0754140770">0754 140770 / 0784 724177</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-socials">
+        <a href="https://filmfreeway.com/KasobaGodwin" target="_blank" rel="noopener">FilmFreeway</a>
+        <a href="#" target="_blank" rel="noopener">Facebook — Kasembo Godwin</a>
+        <a href="#" target="_blank" rel="noopener">Instagram — @kasembogodwinfrancisemmanuel</a>
+        <a href="https://youtube.com/@francisofassisi2622" target="_blank" rel="noopener">YouTube</a>
+      </div>
+      <div class="footer-copy">© 2026 Kasoba Godwin · SaintHood Film Production</div>
+    </div>
+  </div>
 </footer>
 
 <script>
-// ─── CURSOR ───
-const cursor = document.getElementById('cursor');
-const ring = document.getElementById('cursorRing');
-document.addEventListener('mousemove', e => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top = e.clientY + 'px';
-  ring.style.left = e.clientX + 'px';
-  ring.style.top = e.clientY + 'px';
-});
-document.querySelectorAll('a, button, .skill-card, .film-card, .gallery-item').forEach(el => {
-  el.addEventListener('mouseenter', () => ring.classList.add('expand'));
-  el.addEventListener('mouseleave', () => ring.classList.remove('expand'));
-});
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
 
-// ─── NAV SCROLL ───
-const nav = document.getElementById('mainNav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
-});
-
-// ─── HERO PHOTO LOAD ───
-const heroPhoto = document.getElementById('heroPhoto');
-heroPhoto.addEventListener('load', () => heroPhoto.classList.add('loaded'));
-if (heroPhoto.complete) heroPhoto.classList.add('loaded');
-
-// ─── FILMSTRIP HOLES ───
-function buildSprockets(id) {
-  const el = document.getElementById(id);
-  for (let i = 0; i < 60; i++) {
-    const d = document.createElement('div');
-    d.className = 'sprocket';
-    el.appendChild(d);
-  }
-}
-buildSprockets('topSprockets');
-buildSprockets('bottomSprockets');
-// Hero filmstrip
-const hfs = document.getElementById('heroFilmstrip');
-for (let i = 0; i < 80; i++) {
-  const d = document.createElement('div');
-  d.className = 'filmstrip-hole';
-  hfs.appendChild(d);
-}
-
-// ─── COUNTER ANIMATION ───
-function animateCounter(el, target, suffix='') {
-  let start = 0;
-  const duration = 1600;
-  const step = timestamp => {
-    if (!start) start = timestamp;
-    const progress = Math.min((timestamp - start) / duration, 1);
-    const val = Math.floor(progress * target);
-    el.textContent = val + suffix;
-    if (progress < 1) requestAnimationFrame(step);
-    else el.textContent = target + suffix;
-  };
-  requestAnimationFrame(step);
-}
-let countersStarted = false;
-const heroStats = document.querySelector('.hero-stats');
-const statsObserver = new IntersectionObserver(entries => {
-  if (entries[0].isIntersecting && !countersStarted) {
-    countersStarted = true;
-    animateCounter(document.getElementById('statYears'), 9, '+');
-    animateCounter(document.getElementById('statFilms'), 11, '+');
-    animateCounter(document.getElementById('statFest'), 5);
-  }
-}, { threshold: 0.5 });
-statsObserver.observe(heroStats);
-
-// ─── FILMOGRAPHY DATA ───
-const films = [
-  { year: 2022, title: 'Gift from Heaven', role: 'Producer' },
-  { year: 2023, title: 'Revenge', role: 'Executive Producer' },
-  { year: 2023, title: 'The Strange Hunchback', role: 'Director' },
-  { year: 2023, title: 'The Pain of Regret', role: 'Director' },
-  { year: 2024, title: 'Broken Hope', role: 'Director / Scriptwriter / Producer' },
-  { year: 2024, title: 'Coffee Love', role: 'Main Actor / Scriptwriter' },
-  { year: 2025, title: 'The Calling', role: 'Director' },
-  { year: 2025, title: 'Beans Our Food', role: 'Director / Producer' },
-  { year: 2025, title: 'Sharon Story', role: 'Director' },
-  { year: 2026, title: 'Plastic Wastes', role: 'Director / Editor' },
-  { year: 2026, title: 'The Blind Boy', role: 'Cinematographer / Director' },
-  { year: 2026, title: 'Seeds of Rwenzori', role: 'Director / Producer' },
-  { year: 2026, title: 'Rotten Heart', role: 'Executive Producer' },
-];
-const strip = document.getElementById('filmStrip');
-films.forEach((f, i) => {
-  const card = document.createElement('div');
-  card.className = 'film-card';
-  card.innerHTML = `
-    <div class="film-year">${f.year}</div>
-    <div class="film-title">${f.title}</div>
-    <div class="film-role">${f.role}</div>
-    <div class="film-card-num">${String(i+1).padStart(2,'0')}</div>
-  `;
-  strip.appendChild(card);
-});
-
-// Drag scroll
-const filmScroll = document.getElementById('filmScroll');
-let isDown = false, startX, scrollLeft;
-filmScroll.addEventListener('mousedown', e => {
-  isDown = true;
-  startX = e.pageX - filmScroll.offsetLeft;
-  scrollLeft = filmScroll.scrollLeft;
-});
-filmScroll.addEventListener('mouseleave', () => isDown = false);
-filmScroll.addEventListener('mouseup', () => isDown = false);
-filmScroll.addEventListener('mousemove', e => {
-  if (!isDown) return;
-  e.preventDefault();
-  const x = e.pageX - filmScroll.offsetLeft;
-  filmScroll.scrollLeft = scrollLeft - (x - startX) * 1.5;
-});
-
-// ─── AWARDS ───
-const awards = [
-  { year: 2025, name: 'UCC Uganda Regional Film Competition', cat: 'Official Selection / Nominee', badge: 'Nominee' },
-  { year: 2025, name: 'Uganda Film 256', cat: 'Certificate of Recognition', badge: 'Recognised' },
-  { year: 2025, name: 'WUFPA Award Gala', cat: 'Western Uganda Film Producers Association', badge: 'Nominee' },
-  { year: 2026, name: 'International Creative Shorts Festival', cat: 'Official Selection', badge: 'Selected' },
-  { year: 2026, name: 'Rivers International Film Festival', cat: 'Official Selection', badge: 'Selected' },
-  { year: 2026, name: 'Frome International Climate Film Festival', cat: 'United Kingdom · Official Selection', badge: 'Selected' },
-];
-const awList = document.getElementById('awardsList');
-awards.forEach(a => {
-  const row = document.createElement('div');
-  row.className = 'award-row reveal';
-  row.innerHTML = `
-    <div class="award-year">${a.year}</div>
-    <div>
-      <div class="award-name">${a.name}</div>
-      <div class="award-cat">${a.cat}</div>
-    </div>
-    <div class="award-badge">${a.badge}</div>
-  `;
-  awList.appendChild(row);
-});
-
-// ─── SCROLL REVEAL ───
-const revealEls = document.querySelectorAll('.reveal');
-const revealObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      revealObs.unobserve(e.target);
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.querySelector('.nav-links');
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.style.display === 'flex';
+    if (open) {
+      navLinks.style.display = 'none';
+    } else {
+      navLinks.style.cssText = 'display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:rgba(10,23,25,0.97);padding:1.4rem 6vw;gap:1.3rem;backdrop-filter:blur(14px);';
     }
   });
-}, { threshold: 0.12 });
-revealEls.forEach(el => revealObs.observe(el));
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      if (window.innerWidth <= 720) navLinks.style.display = 'none';
+    });
+  });
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => io.observe(el));
 </script>
+
 </body>
 </html>
